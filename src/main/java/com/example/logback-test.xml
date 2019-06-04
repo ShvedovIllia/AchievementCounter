@@ -1,0 +1,43 @@
+<configuration>
+    <timestamp key="date" datePattern="yyyy-MM-dd"/>
+
+    <appender name="DEBUGS" class="ch.qos.logback.core.FileAppender">
+        <file>../logs/${date}/CONSOLE.txt</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERRORS" class="ch.qos.logback.core.FileAppender">
+        <file>../logs/${date}/ERROR.txt</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFORM" class="ch.qos.logback.core.FileAppender">
+        <file>../logs/${date}/REQRES.txt</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level = 'ALL'>
+        <appender-ref level = "ALL" ref="DEBUGS"/>
+        <appender-ref level = "ERROR" ref="ERRORS"/>
+    </root>
+    <logger name = "INFORM">
+        <appender-ref ref="INFORM" level = "ALL"/>
+    </logger>
+
+
+</configuration>
