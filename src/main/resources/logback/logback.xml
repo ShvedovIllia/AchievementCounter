@@ -1,7 +1,7 @@
 <configuration>
     <timestamp key="date" datePattern="yyyy-MM-dd"/>
 
-    <appender name="DEBUGS" class="ch.qos.logback.core.FileAppender">
+    <appender name="console" class="ch.qos.logback.core.FileAppender">
         <file>../logs/${date}/CONSOLE.txt</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
@@ -11,7 +11,7 @@
         </encoder>
     </appender>
 
-    <appender name="ERRORS" class="ch.qos.logback.core.FileAppender">
+    <appender name="errors" class="ch.qos.logback.core.FileAppender">
         <file>../logs/${date}/ERROR.txt</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
@@ -21,7 +21,7 @@
         </encoder>
     </appender>
 
-    <appender name="INFORM" class="ch.qos.logback.core.FileAppender">
+    <appender name="request-log" class="ch.qos.logback.core.FileAppender">
         <file>../logs/${date}/REQRES.txt</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
@@ -32,11 +32,11 @@
     </appender>
 
     <root level = 'ALL'>
-        <appender-ref level = "ALL" ref="DEBUGS"/>
-        <appender-ref level = "ERROR" ref="ERRORS"/>
+        <appender-ref level="ALL" ref="console"/>
+        <appender-ref level="ERROR" ref="errors"/>
     </root>
-    <logger name = "INFORM">
-        <appender-ref ref="INFORM" level = "ALL"/>
+    <logger name="request-log">
+        <appender-ref ref="request-log" level="ALL"/>
     </logger>
 
 

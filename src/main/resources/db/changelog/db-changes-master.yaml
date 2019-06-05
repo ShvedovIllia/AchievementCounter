@@ -1,3 +1,4 @@
 databaseChangeLog:
  - include:
-     file: classpath:db/changelog/changes/some_changes.yaml
+     file: classpath:db/changelog/changes/changelog-test.yaml
+     file: classpath:db/changelog/changes/initial-datastructure.yaml
