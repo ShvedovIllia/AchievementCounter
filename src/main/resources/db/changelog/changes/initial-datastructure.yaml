@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - preConditions:
+    - runningAs:
+        username: root
+        password: 1234
+
+  - changeSet:
+      id: 1
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: Long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+              - column:
+                  name: password
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dateOfCreation
+                  type: varchar(15)
+              - column:
+                  name: teamId
+                  type: varchar(50)
+
+        - createTable:
+            tableName: teams
+            columns:
+              - column:
+                  name: id
+                  type: Long
+                  autoIncrement: true
+                  constraints:
+                      primaryKey: true
+                      nullable: false
+              - column:
+                   name: name
+                   type: varchar(50)
+
+        - createTable:
+            tableName: achievements
+            columns:
+              - column:
+                   name: id
+                   type: Long
+                   autoIncrement: true
+                   constraints:
+                   primaryKey: true
+                   nullable: false
+              - column:
+                   name: name
+                   type: varchar(50)
+              - column:
+                   name: description
+                   type: varchar(250)
+              - column:
+                   name: date_created
+                   type: varchar(20)
+              - column:
+                   name: date_updated
+                   type: varchar(50)
+              - column:
+                   name: points
+                   type: int
