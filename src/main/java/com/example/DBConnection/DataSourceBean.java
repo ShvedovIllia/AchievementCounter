@@ -16,14 +16,6 @@ public class DataSourceBean {
     private static HikariDataSource ds;
     private HikariConfig config = new HikariConfig();
 
-    public static Connection getConnection() throws SQLException {
-        try {
-            return ds.getConnection();
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
     @Bean
     @Primary
     public HikariDataSource getDataSource() {
@@ -35,5 +27,13 @@ public class DataSourceBean {
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         ds = new HikariDataSource(config);
         return ds;
+    }
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            return ds.getConnection();
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 }
