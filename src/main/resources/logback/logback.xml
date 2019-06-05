@@ -39,5 +39,4 @@
         <appender-ref ref="request-log" level="ALL"/>
     </logger>
 
-
 </configuration>
