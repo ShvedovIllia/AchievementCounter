@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DataSourceBean {
+public class DataSourceConfiguration {
 
     @Value("${db.url}")
     private String url;
@@ -18,7 +18,6 @@ public class DataSourceBean {
 
     @Bean
     public HikariDataSource getDataSource() {
-        HikariDataSource ds;
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -26,7 +25,7 @@ public class DataSourceBean {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        ds = new HikariDataSource(config);
-        return ds;
+
+        return new HikariDataSource(config);
     }
 }

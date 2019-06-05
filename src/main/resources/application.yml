@@ -7,3 +7,8 @@ db:
  username: root
  password: 1234
  url: jdbc:mysql://${db.host}/${db.schema}?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 10

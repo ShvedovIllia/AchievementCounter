@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AchievementCounterConfiguration {
 
-    private final DataSourceBean dataSource;
+    private final DataSourceConfiguration dataSource;
 
     @Autowired
-    public AchievementCounterConfiguration(DataSourceBean dataSource) {
+    public AchievementCounterConfiguration(DataSourceConfiguration dataSource) {
         this.dataSource = dataSource;
     }
 
