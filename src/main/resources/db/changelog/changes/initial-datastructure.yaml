@@ -1,8 +1,4 @@
 databaseChangeLog:
-  - preConditions:
-    - runningAs:
-        username: root
-        password: 1234
 
   - changeSet:
       id: 1

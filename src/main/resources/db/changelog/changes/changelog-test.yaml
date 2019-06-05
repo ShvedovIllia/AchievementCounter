@@ -1,0 +1,9 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: liquibase-test
+      author: illia.shvedov
+      dbms: mysql
+      changes:
+        - sql:
+            sql: select now();

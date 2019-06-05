@@ -10,8 +10,10 @@ public class DataSource {
 
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource ds;
+    //add logger
 
     static {
+        //
         config.setJdbcUrl("jdbc:mysql://localhost:3306/achievement_counter?serverTimezone=UTC");
         config.setUsername("root");
         config.setPassword("1234");
@@ -25,6 +27,13 @@ public class DataSource {
     }
 
     public static Connection getConnection() throws SQLException {
+//        try {
+//
+//        }
+//        catch (SQLException e) {
+//            //log e, message could not get coonection stacktrace
+//            throw e;
+//        }
         return ds.getConnection();
     }
 
