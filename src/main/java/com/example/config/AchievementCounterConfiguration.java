@@ -1,8 +1,5 @@
-package com.example;
+package com.example.config;
 
-//import com.example.DBConnection.DataSource;
-
-import com.example.DBConnection.DataSourceBean;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AchievementCounterConfiguration {
 
-    private final DataSourceBean dataSource;
+    private final DataSourceConfiguration dataSource;
 
     @Autowired
-    public AchievementCounterConfiguration(DataSourceBean dataSource) {
+    public AchievementCounterConfiguration(DataSourceConfiguration dataSource) {
         this.dataSource = dataSource;
     }
 

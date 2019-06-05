@@ -1,0 +1,10 @@
+databaseChangeLog:
+    changeSet:
+      id: refactoring-database
+      author: illia.shvedov
+      changes:
+        - modifyDataType:
+             columnName: id
+             newDataType: int(11)
+             tableName: users
+             schemaName: achievement_counter
