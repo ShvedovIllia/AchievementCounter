@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @Configuration
 @Component
 public class DataSourceBean {
-    private static HikariDataSource ds;
+    private HikariDataSource ds;
     private HikariConfig config = new HikariConfig();
 
     @Bean
@@ -29,7 +29,7 @@ public class DataSourceBean {
         return ds;
     }
 
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         try {
             return ds.getConnection();
         } catch (SQLException e) {
