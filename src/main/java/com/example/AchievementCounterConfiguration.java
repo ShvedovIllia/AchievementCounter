@@ -1,7 +1,5 @@
 package com.example;
 
-//import com.example.DBConnection.DataSource;
-
 import com.example.DBConnection.DataSourceBean;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
