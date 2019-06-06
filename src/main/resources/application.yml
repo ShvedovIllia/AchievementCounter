@@ -12,3 +12,5 @@ spring:
   datasource:
     hikari:
       maximum-pool-size: 10
+  main:
+    allow-bean-definition-overriding: true
