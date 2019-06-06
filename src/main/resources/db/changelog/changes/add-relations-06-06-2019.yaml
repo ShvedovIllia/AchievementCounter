@@ -1,0 +1,30 @@
+databaseChangeLog:
+    changeSet:
+      id: add-foreign-keys
+      author: illia.shvedov
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: team_id
+          baseTableName: users
+          referencedColumnNames: id
+          referencedTableName: teams
+      - addForeignKeyConstraint:
+          baseColumnNames: user_id
+          baseTableName: achievements
+          referencedColumnNames: id
+          referencedTableName: users
+      - addForeignKeyConstraint:
+          baseColumnNames: user_id
+          baseTableName: user_activity
+          referencedColumnNames: id
+          referencedTableName: users
+      - addForeignKeyConstraint:
+          baseColumnNames: activity_id
+          baseTableName: user_activity
+          referencedColumnNames: id
+          referencedTableName: activity
+      - addForeignKeyConstraint:
+          baseColumnNames: achievement_id
+          baseTableName: user_activity
+          referencedColumnNames: id
+          referencedTableName: achievements
