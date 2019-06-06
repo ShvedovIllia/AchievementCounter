@@ -10,4 +10,6 @@ databaseChangeLog:
  - include:
      file: classpath:db/changelog/changes/add-columns-06-06-2019.yaml
  - include:
+     file: classpath:db/changelog/changes/add-table-activity-06-06-2019.yaml
+ - include:
      file: classpath:db/changelog/changes/add-relations-06-06-2019.yaml
