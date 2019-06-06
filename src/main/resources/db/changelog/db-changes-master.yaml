@@ -5,3 +5,9 @@ databaseChangeLog:
      file: classpath:db/changelog/changes/initial-datastructure.yaml
  - include:
      file: classpath:db/changelog/changes/database-refactoring.yaml
+ - include:
+     file: classpath:db/changelog/changes/add-table-user-activity-06-06-2019.yaml
+ - include:
+     file: classpath:db/changelog/changes/add-columns-06-06-2019.yaml
+ - include:
+     file: classpath:db/changelog/changes/add-relations-06-06-2019.yaml

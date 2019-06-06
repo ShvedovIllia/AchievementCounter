@@ -1,6 +1,6 @@
 databaseChangeLog:
     - changeSet:
-          id: initial-change
+          id: add-table-user-activity
           author: illia.shvedov
           changes:
               - createTable:
@@ -16,3 +16,12 @@ databaseChangeLog:
                       - column:
                           name: date_creation
                           type: datetime
+                      - column:
+                          name: user_id
+                          type: int(11)
+                      - column:
+                          name: activity_id
+                          type: int(11)
+                      - column:
+                          name: achievement_id
+                          type: int(11)

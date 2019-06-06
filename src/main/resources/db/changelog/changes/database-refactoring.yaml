@@ -1,7 +1,7 @@
 databaseChangeLog:
    - changeSet:
         id: database-refactoring
-        author: shvedov.illia
+        author: illia.shvedov
         changes:
            - modifyDataType:
                columnName: id
