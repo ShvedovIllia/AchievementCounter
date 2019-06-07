@@ -19,6 +19,6 @@ public class UserEntity {
     private Long id;
     private String username;
     private String password;
-    private LocalDate date_created;
+    private LocalDate dateOfCreation;
     private Long teamId;
 }
