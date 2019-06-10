@@ -1,0 +1,19 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: add-table-activity
+      author: illia.shvedov
+      changes:
+          - createTable:
+              tableName: activity
+              columns:
+              - column:
+                  name: id
+                  type: int(11)
+                  autoIncrement: true
+                  constraints:
+                      primaryKey: true
+                      nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)

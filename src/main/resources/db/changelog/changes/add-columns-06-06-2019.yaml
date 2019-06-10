@@ -1,0 +1,12 @@
+databaseChangeLog:
+    - changeSet:
+          id: add-columns-06-06-2019
+          author: illia.shvedov
+          changes:
+            - addColumn:
+                schemaName: achievement_counter
+                tableName: achievements
+                columns:
+                - column:
+                    name: user_id
+                    type: int(11)

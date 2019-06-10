@@ -1,0 +1,27 @@
+databaseChangeLog:
+    - changeSet:
+          id: add-table-user-activity
+          author: illia.shvedov
+          changes:
+              - createTable:
+                  tableName: user_activity
+                  columns:
+                      - column:
+                          name: id
+                          type: int(11)
+                          autoIncrement: true
+                          constraints:
+                             primaryKey: true
+                             nullable: false
+                      - column:
+                          name: date_creation
+                          type: datetime
+                      - column:
+                          name: user_id
+                          type: int(11)
+                      - column:
+                          name: activity_id
+                          type: int(11)
+                      - column:
+                          name: achievement_id
+                          type: int(11)
