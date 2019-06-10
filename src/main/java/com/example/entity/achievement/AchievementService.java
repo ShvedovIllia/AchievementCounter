@@ -41,7 +41,7 @@ public class AchievementService {
                 .addValue("name", achievementDTO.getName())
                 .addValue("description", achievementDTO.getDescription())
                 .addValue("date_created", achievementDTO.getDate_created())
-                .addValue("date_update", achievementDTO.getDate_updated())
+                .addValue("date_updated", achievementDTO.getDate_updated())
                 .addValue("points", achievementDTO.getPoints())
                 .addValue("user_id", achievementDTO.getUser_id());
         namedParameterJdbcTemplate.update(
@@ -60,7 +60,7 @@ public class AchievementService {
                 .addValue("name", achievementDTO.getName())
                 .addValue("description", achievementDTO.getDescription())
                 .addValue("date_created", LocalDate.now())
-                .addValue("date_update", LocalDate.now())
+                .addValue("date_updated", LocalDate.now())
                 .addValue("points", achievementDTO.getPoints())
                 .addValue("user_id", achievementDTO.getUser_id());
 
