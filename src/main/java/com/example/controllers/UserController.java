@@ -2,7 +2,8 @@ package com.example.controllers;
 
 import com.example.entity.user.UserDTO;
 import com.example.entity.user.UserEntity;
-import com.example.entity.user.UserServiceImpl;
+import com.example.entity.user.UserService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +14,12 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("request-log");
+    private static final Logger logger = LoggerFactory.getLogger("request-log");
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

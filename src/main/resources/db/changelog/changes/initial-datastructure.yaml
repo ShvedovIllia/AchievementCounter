@@ -9,7 +9,7 @@ databaseChangeLog:
               columns:
               - column:
                   name: id
-                  type: int
+                  type: int(11)
                   autoIncrement: true
                   constraints:
                       primaryKey: true
@@ -24,17 +24,17 @@ databaseChangeLog:
                       nullable: false
               - column:
                   name: dateOfCreation
-                  type: varchar(15)
+                  type: datetime
               - column:
                   name: teamId
-                  type: varchar(50)
+                  type: int(11)
 
           - createTable:
               tableName: teams
               columns:
               - column:
                   name: id
-                  type: int
+                  type: int(11)
                   autoIncrement: true
                   constraints:
                       primaryKey: true
@@ -48,7 +48,7 @@ databaseChangeLog:
               columns:
               - column:
                    name: id
-                   type: int
+                   type: int(11)
                    autoIncrement: true
                    constraints:
                       primaryKey: true
@@ -61,10 +61,10 @@ databaseChangeLog:
                    type: varchar(250)
               - column:
                    name: date_created
-                   type: varchar(20)
+                   type: datetime
               - column:
                    name: date_updated
-                   type: varchar(50)
+                   type: datetime
               - column:
                    name: points
-                   type: int
+                   type: int(11)
