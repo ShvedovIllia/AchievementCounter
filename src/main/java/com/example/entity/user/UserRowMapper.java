@@ -11,10 +11,11 @@ public class UserRowMapper implements RowMapper<UserEntity> {
     public UserEntity mapRow(ResultSet resultSet, int i) throws SQLException {
         UserEntity user = new UserEntity();
         user.setId(resultSet.getLong("id"));
-        user.setUsername(resultSet.getString("name"));
+        user.setName(resultSet.getString("name"));
         user.setPassword(resultSet.getString("password"));
         user.setDateOfCreation(resultSet.getDate("dateOfCreation").toLocalDate());
         user.setTeamId(resultSet.getLong("teamId"));
         return user;
     }
+
 }

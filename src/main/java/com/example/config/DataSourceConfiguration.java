@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
@@ -39,5 +40,10 @@ public class DataSourceConfiguration {
     @Bean
     public DataSourceTransactionManager dataSourceTransactionManager() {
         return new DataSourceTransactionManager(getDataSource());
+    }
+
+    @Bean
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+        return new NamedParameterJdbcTemplate(getDataSource());
     }
 }

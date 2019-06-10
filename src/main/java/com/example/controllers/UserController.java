@@ -3,14 +3,21 @@ package com.example.controllers;
 import com.example.entity.user.UserDTO;
 import com.example.entity.user.UserEntity;
 import com.example.entity.user.UserServiceImpl;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 public class UserController {
+
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("request-log");
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     private final UserServiceImpl userService;
 
@@ -30,12 +37,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/create", method = RequestMethod.POST)
-    public ResponseEntity<UserEntity> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO) {
+        logger.info("uasdfasdfs");
+        System.out.println(httpServletRequest.getHeaderNames());
         return ResponseEntity.ok(userService.createUser(userDTO));
     }
 
     @RequestMapping(value = "/users/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<UserEntity> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") Long id) {
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") Long id) {
         return ResponseEntity.ok(userService.updateUser(userDTO, id));
     }
 }

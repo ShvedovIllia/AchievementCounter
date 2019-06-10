@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class UserDTO {
 
     private Long id;
-    private String username;
+    private String name;
     private String password;
     private LocalDate dateOfCreation;
     private Long teamId;
