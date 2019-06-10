@@ -8,16 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 public class UserController {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("request-log");
-
-    @Autowired
-    private HttpServletRequest httpServletRequest;
 
     private final UserServiceImpl userService;
 
@@ -38,8 +34,6 @@ public class UserController {
 
     @RequestMapping(value = "/users/create", method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO) {
-        logger.info("uasdfasdfs");
-        System.out.println(httpServletRequest.getHeaderNames());
         return ResponseEntity.ok(userService.createUser(userDTO));
     }
 

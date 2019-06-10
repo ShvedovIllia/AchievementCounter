@@ -31,19 +31,6 @@ public class UserServiceImpl {
     }
 
     public List<UserEntity> getAllUsers() {
-//        List<UserEntity> userEntities = new ArrayList<>();
-//        List<Map<String, Object>> rows = jdbcTemplate.queryForList(UserQueries.GET_ALL_USERS_QUERY);
-//        rows.forEach(row -> {
-//            UserEntity userEntity = new UserEntity();
-//            userEntity.setId(Long.parseLong(row.get("id").toString()));
-//            userEntity.setName((String) (row.get("name")));
-//            userEntity.setPassword((String) (row.get("password")));
-//            Timestamp date = (Timestamp) (row.get("dateOfCreation"));
-//            userEntity.setDateOfCreation(date.toLocalDateTime().toLocalDate());
-//            userEntity.setTeamId(Long.parseLong(row.get("teamId").toString()));
-//            userEntities.add(userEntity);
-//        });
-//        return userEntities;
         return jdbcTemplate.query(UserQueries.GET_ALL_USERS_QUERY, new BeanPropertyRowMapper<>(UserEntity.class));
     }
 
@@ -64,14 +51,15 @@ public class UserServiceImpl {
     }
 
     public UserDTO updateUser(UserDTO userDTO, Long id) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+
         userDTO.setId(id);
-        SqlParameterSource userParameters = new MapSqlParameterSource()
+        SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("id", userDTO.getId())
                 .addValue("name", userDTO.getName())
                 .addValue("password", userDTO.getPassword())
                 .addValue("teamId", userDTO.getTeamId());
-        namedParameterJdbcTemplate.update(UserQueries.UPDATE_USER_QUERY, userParameters, keyHolder);
+
+        namedParameterJdbcTemplate.update(UserQueries.UPDATE_USER_QUERY, parameters);
         return userDTO;
     }
 }
