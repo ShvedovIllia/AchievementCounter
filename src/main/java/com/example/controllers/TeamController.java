@@ -3,6 +3,7 @@ package com.example.controllers;
 import com.example.entity.team.TeamDTO;
 import com.example.entity.team.TeamEntity;
 import com.example.entity.team.TeamService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 public class TeamController {
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("request-log");
+    private static final Logger logger = LoggerFactory.getLogger("request-log");
 
     private final TeamService teamService;
 

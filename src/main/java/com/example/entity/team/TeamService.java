@@ -39,9 +39,7 @@ public class TeamService {
                 .addValue("id", teamDTO.getId())
                 .addValue("name", teamDTO.getName());
         namedParameterJdbcTemplate.update(
-                TeamQueries.ADD_TEAM_QUERY,
-                parameters,
-                keyHolder);
+                TeamQueries.ADD_TEAM_QUERY, parameters, keyHolder);
         teamDTO.setId(keyHolder.getKey().longValue());
         return teamDTO;
     }
