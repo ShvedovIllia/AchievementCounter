@@ -2,37 +2,43 @@
     <timestamp key="date" datePattern="yyyy-MM-dd"/>
 
     <appender name="console" class="ch.qos.logback.core.FileAppender">
-        <file>../logs/${date}/CONSOLE.txt</file>
+        <file>../logs/${date}/CONSOLE.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
         </filter>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} \t %-5level \t %c \t %m%n</pattern>
         </encoder>
     </appender>
 
     <appender name="errors" class="ch.qos.logback.core.FileAppender">
-        <file>../logs/${date}/ERROR.txt</file>
+        <file>../logs/${date}/ERROR.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} \t %-5level \t %c \t %m%n</pattern>
         </encoder>
     </appender>
 
     <appender name="request-log" class="ch.qos.logback.core.FileAppender">
-        <file>../logs/${date}/REQRES.txt</file>
+        <file>../logs/${date}/REQUEST.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] \t %-5level \t %method %c \t %m%n</pattern>
         </encoder>
     </appender>
 
-    <root level = 'ALL'>
-        <appender-ref level="ALL" ref="console"/>
+    <appender name="std-out" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] \t %-5level \t %c \t %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level='INFO'>
+        <appender-ref level="INFO" ref="console"/>
+        <appender-ref level="INFO" ref="std-out"/>
         <appender-ref level="ERROR" ref="errors"/>
     </root>
     <logger name="request-log">
