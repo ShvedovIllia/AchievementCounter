@@ -3,6 +3,9 @@ package com.example.controllers;
 import com.example.entity.user.UserDTO;
 import com.example.entity.user.UserEntity;
 import com.example.entity.user.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +33,29 @@ public class UserController {
 
     @RequestMapping(value = "/users/getAll", method = RequestMethod.GET)
     public ResponseEntity<List<UserEntity>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+        List<UserEntity> users = userService.getAllUsers();
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+//        logger.info("BODY: ");
+//        users.forEach(userEntity -> {
+//            try {
+//                logger.info(ow.writeValueAsString(userEntity));
+//            } catch (JsonProcessingException e) {
+//                e.printStackTrace();
+//            }
+//        });
+        return ResponseEntity.ok(users);
     }
 
     @RequestMapping(value = "/users/create", method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.createUser(userDTO));
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) throws JsonProcessingException {
+        UserDTO newUserDTO = userService.createUser(userDTO);
+        return ResponseEntity.ok(newUserDTO);
     }
 
     @RequestMapping(value = "/users/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") Long id) {
-        return ResponseEntity.ok(userService.updateUser(userDTO, id));
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") Long id) throws JsonProcessingException {
+        UserDTO newUserDTO = userService.createUser(userDTO);
+        return ResponseEntity.ok(userService.updateUser(newUserDTO, id));
     }
 }

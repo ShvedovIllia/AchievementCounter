@@ -25,21 +25,30 @@ public class TeamController {
 
     @RequestMapping(value = "/teams/{id}", method = RequestMethod.GET)
     public ResponseEntity<TeamEntity> getTeamById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(teamService.getEntityById(id));
+        logger.info("Request to get team with id = " + id);
+        TeamEntity teamEntity = teamService.getEntityById(id);
+        logger.info("Team with id " + id + "! \nName: " + teamEntity.getName());
+        return ResponseEntity.ok(teamEntity);
     }
 
     @RequestMapping(value = "/teams/getAll", method = RequestMethod.GET)
     public ResponseEntity<List<TeamEntity>> getAllTeams() {
-        return ResponseEntity.ok(teamService.getAllTeams());
+        logger.info("Request to get all teams");
+        List<TeamEntity> teams = teamService.getAllTeams();
+        logger.info(teams.size() + " teams found!");
+        return ResponseEntity.ok(teams);
     }
 
     @RequestMapping(value = "/teams/create", method = RequestMethod.POST)
     public ResponseEntity<?> createTeam(@RequestBody TeamDTO teamDTO) {
-        return ResponseEntity.ok(teamService.createTeam(teamDTO));
+        TeamDTO teamDTOnew = teamService.createTeam(teamDTO);
+        logger.info("Team created with id " + teamDTOnew.getId() + " and name '" + teamDTOnew.getName() + "'!");
+        return ResponseEntity.ok(teamDTOnew);
     }
 
     @RequestMapping(value = "/teams/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateTeam(@RequestBody TeamDTO teamDTO, @PathVariable("id") Long id) {
+        logger.info("Request to update team with id = " + id);
         return ResponseEntity.ok(teamService.updateTeam(teamDTO, id));
     }
 }
