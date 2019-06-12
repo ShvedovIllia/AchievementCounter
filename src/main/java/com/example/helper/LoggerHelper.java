@@ -4,14 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoggerHelper {
 
-    public static String requestLogBuilder(HttpServletRequest httpServletRequest) {
-        return "REQ -- METHOD: [" + httpServletRequest.getMethod() + "],\t PATH: [" + httpServletRequest.getServletPath() + "],\t HEADERS: " + LoggerHelper.customGetHeaders(httpServletRequest).entrySet().toString();
+    public static String requestLogBuilder(HttpServletRequest httpServletRequest) throws IOException {
+        return "REQ -- METHOD: [" + httpServletRequest.getMethod() + "],\t PATH: [" + httpServletRequest.getServletPath() + "],\t HEADERS: "
+                + LoggerHelper.customGetHeaders(httpServletRequest).entrySet().toString();
     }
 
     public static String responseLogBuilder(HttpServletResponse response) throws JsonProcessingException {
