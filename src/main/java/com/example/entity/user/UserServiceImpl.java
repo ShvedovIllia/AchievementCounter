@@ -1,6 +1,7 @@
 package com.example.entity.user;
 
 import com.example.constants.query.UserQueries;
+import com.example.entity.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,51 +16,54 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements EntityService<UserEntity, UserDTO> {
 
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    public UserService(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public UserServiceImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    public UserEntity getEntityById(Long id) {
+    @Override
+    public UserEntity getById(Long id) {
         return jdbcTemplate.queryForObject(UserQueries.GET_USER_BY_ID_QUERY, new UserRowMapper(), id);
     }
 
-    public List<UserEntity> getAllUsers() {
+    @Override
+    public List<UserEntity> getAll() {
         return jdbcTemplate.query(UserQueries.GET_ALL_USERS_QUERY, new BeanPropertyRowMapper<>(UserEntity.class));
     }
 
-    public UserDTO createUser(UserDTO userDTO) {
+    @Override
+    public UserDTO create(UserDTO dto) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         SqlParameterSource userParameters = new MapSqlParameterSource()
-                .addValue("id", userDTO.getId())
-                .addValue("name", userDTO.getName())
-                .addValue("password", userDTO.getPassword())
+                .addValue("id", dto.getId())
+                .addValue("name", dto.getName())
+                .addValue("password", dto.getPassword())
                 .addValue("dateOfCreation", LocalDate.now())
-                .addValue("teamId", userDTO.getTeamId());
+                .addValue("teamId", dto.getTeamId());
         namedParameterJdbcTemplate.update(
                 UserQueries.ADD_USER_QUERY,
                 userParameters,
                 keyHolder);
-        userDTO.setId(keyHolder.getKey().longValue());
-        return userDTO;
+        dto.setId(keyHolder.getKey().longValue());
+        return dto;
     }
 
-    public UserDTO updateUser(UserDTO userDTO, Long id) {
-
-        userDTO.setId(id);
+    @Override
+    public UserDTO update(UserDTO dto, Long id) {
+        dto.setId(id);
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id", userDTO.getId())
-                .addValue("name", userDTO.getName())
-                .addValue("password", userDTO.getPassword())
-                .addValue("teamId", userDTO.getTeamId());
+                .addValue("id", dto.getId())
+                .addValue("name", dto.getName())
+                .addValue("password", dto.getPassword())
+                .addValue("teamId", dto.getTeamId());
 
         namedParameterJdbcTemplate.update(UserQueries.UPDATE_USER_QUERY, parameters);
-        return userDTO;
+        return dto;
     }
 }
