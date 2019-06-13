@@ -2,9 +2,7 @@ package com.example.controllers;
 
 import com.example.entity.team.TeamDTO;
 import com.example.entity.team.TeamEntity;
-import com.example.entity.team.TeamService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.entity.team.TeamServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,41 +12,30 @@ import java.util.List;
 @RestController
 public class TeamController {
 
-    private static final Logger logger = LoggerFactory.getLogger("request-log");
-
-    private final TeamService teamService;
+    private final TeamServiceImpl teamServiceImpl;
 
     @Autowired
-    public TeamController(TeamService teamService) {
-        this.teamService = teamService;
+    public TeamController(TeamServiceImpl teamServiceImpl) {
+        this.teamServiceImpl = teamServiceImpl;
     }
 
     @RequestMapping(value = "/teams/{id}", method = RequestMethod.GET)
     public ResponseEntity<TeamEntity> getTeamById(@PathVariable("id") Long id) {
-        logger.info("Request to get team with id = " + id);
-        TeamEntity teamEntity = teamService.getEntityById(id);
-        logger.info("Team with id " + id + "! \nName: " + teamEntity.getName());
-        return ResponseEntity.ok(teamEntity);
+        return ResponseEntity.ok(teamServiceImpl.getById(id));
     }
 
     @RequestMapping(value = "/teams/getAll", method = RequestMethod.GET)
     public ResponseEntity<List<TeamEntity>> getAllTeams() {
-        logger.info("Request to get all teams");
-        List<TeamEntity> teams = teamService.getAllTeams();
-        logger.info(teams.size() + " teams found!");
-        return ResponseEntity.ok(teams);
+        return ResponseEntity.ok(teamServiceImpl.getAll());
     }
 
     @RequestMapping(value = "/teams/create", method = RequestMethod.POST)
     public ResponseEntity<?> createTeam(@RequestBody TeamDTO teamDTO) {
-        TeamDTO teamDTOnew = teamService.createTeam(teamDTO);
-        logger.info("Team created with id " + teamDTOnew.getId() + " and name '" + teamDTOnew.getName() + "'!");
-        return ResponseEntity.ok(teamDTOnew);
+        return ResponseEntity.ok(teamServiceImpl.create(teamDTO));
     }
 
     @RequestMapping(value = "/teams/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateTeam(@RequestBody TeamDTO teamDTO, @PathVariable("id") Long id) {
-        logger.info("Request to update team with id = " + id);
-        return ResponseEntity.ok(teamService.updateTeam(teamDTO, id));
+        return ResponseEntity.ok(teamServiceImpl.update(teamDTO, id));
     }
 }
