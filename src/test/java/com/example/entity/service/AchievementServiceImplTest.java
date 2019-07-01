@@ -69,6 +69,7 @@ public class AchievementServiceImplTest {
 //        AchievementDTO dto = AchievementDummy.createAchievementDTO(1L, "testName", "desc", LocalDate.now(), LocalDate.now(), 5, 3L);
 //        AchievementDTO achievementDTO = achievementService.create(dto);
 //        Assert.assertEquals(1, achievementDTO.getId().intValue());
+//    broken test
 //    }
 
 
