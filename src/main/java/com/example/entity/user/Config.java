@@ -10,7 +10,6 @@ public class Config {
     @Bean
     @Scope("interval")
     public IntValue intValue() {
-
         return new IntValue();
     }
 

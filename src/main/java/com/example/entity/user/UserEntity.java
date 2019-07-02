@@ -17,7 +17,6 @@ public abstract class UserEntity {
     private String password;
     private LocalDate dateOfCreation;
     private Long teamId;
-    //    @RandomIntValue(max = 20, min = 4)
     private Integer age;
 
     public UserEntity() {
