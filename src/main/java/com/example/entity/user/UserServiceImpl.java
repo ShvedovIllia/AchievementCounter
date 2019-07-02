@@ -5,6 +5,7 @@ import com.example.entity.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements EntityService<UserEntity, UserDTO> {
 
     @Override
     public UserEntity getById(Long id) {
-        return jdbcTemplate.queryForObject(UserQueries.GET_USER_BY_ID_QUERY, new UserRowMapper(), id);
+        return jdbcTemplate.queryForObject(UserQueries.GET_USER_BY_ID_QUERY, new SingleColumnRowMapper<>(), id);
     }
 
     @Override

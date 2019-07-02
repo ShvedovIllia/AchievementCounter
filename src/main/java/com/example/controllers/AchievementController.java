@@ -21,6 +21,7 @@ public class AchievementController {
 
     @RequestMapping(value = "/achievements/{id}", method = RequestMethod.GET)
     public ResponseEntity<AchievementEntity> getAchievementById(@PathVariable("id") Long id) {
+
         return ResponseEntity.ok(achievementServiceImpl.getById(id));
     }
 
