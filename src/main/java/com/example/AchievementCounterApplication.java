@@ -14,7 +14,6 @@ public class AchievementCounterApplication {
 
     public static void main(String[] args) throws InterruptedException {
         ConfigurableApplicationContext run = SpringApplication.run(AchievementCounterApplication.class, args);
-        UserEntity bean = run.getBean(UserEntity.class);
         logger.info("---Application started!---");
         run.getBean(UserServiceNew.class).doSomeThink();
     }
